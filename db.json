@@ -1,0 +1,28 @@
+{
+  "todos": [
+    {
+      "task": "Exercise for 40 minutes",
+      "completed": false,
+      "label": "Health",
+      "id": 5
+    },
+    {
+      "task": "Buy groceries",
+      "completed": true,
+      "label": "Shopping",
+      "id": 6
+    },
+    {
+      "task": "Write a blog post",
+      "completed": true,
+      "label": "Work",
+      "id": 1
+    },
+    {
+      "task": "Read a book",
+      "completed": true,
+      "label": "Personal",
+      "id": 3
+    }
+  ]
+}

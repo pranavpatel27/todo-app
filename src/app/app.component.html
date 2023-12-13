@@ -1,0 +1,56 @@
+<div class="flex flex-column align-items-center justify-content-center h-full">
+  <p-card header=Todo class="w-8">
+    <h4 class="mb-3 mt-2">Add Task</h4>
+    <div class="ml-0 flex">
+      <div>
+        <p-dropdown placeholder="Add label" class="mr-2 w-5" [style]="{'width':'200px'}" [(ngModel)]="selectedLabel"
+          [options]="labelOptions" #selected="ngModel" optionValue="value" optionLabel="label">
+        </p-dropdown>
+      </div>
+      <div>
+        <input [style]="{'width':'200px'}" type="text" pInputText [(ngModel)]="task" placeholder="Add todo"
+          #todoTask="ngModel" class="mb-2" required />
+      </div>
+      <p-button icon="pi pi-check" class="ml-2 mb-2" (onClick)="editTodo()"></p-button>
+    </div>
+    <h4 class="mb-3">Sort</h4>
+    <div class="flex gap-3 mb-3">
+      <div class="flex align-items-left">
+        <p-radioButton name="completed" value="true" [(ngModel)]="completed" (onClick)="getList()"></p-radioButton>
+        <label for="ingredient1" class="ml-2">Completed</label>
+      </div>
+      <div class="flex align-items-center">
+        <p-radioButton name="completed" value="false" [(ngModel)]="completed" (onClick)="getList()"></p-radioButton>
+        <label for="ingredient1" class="ml-2">Pending</label>
+      </div>
+    </div>
+    <p class="m-0">
+      <p-table [value]="todos" selectionMode="single">
+        <ng-template pTemplate="header">
+          <tr>
+            <th width="25%">Label</th>
+            <th width="30%">Task</th>
+            <th width="20%">Status</th>
+            <th width="15%">Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-todo>
+          <tr>
+            <td>{{todo.label}}</td>
+            <td>{{ todo.task }}</td>
+            <td>
+              <p-checkbox [(ngModel)]="todo.completed" [binary]="true"
+                (onChange)="updateTodo($event, todo)"></p-checkbox>
+            </td>
+            <td>
+              <p-button icon="pi pi-pencil" severity="secondary" styleClass="p-button-warning" (onClick)="getById(todo.id)">
+              </p-button>
+              <p-button icon="pi pi-trash" styleClass="p-button-danger ml-2" (onClick)="deleteTodo($event, todo.id)">
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p>
+  </p-card>
+</div>
